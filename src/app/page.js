@@ -1,5 +1,5 @@
 "use client";
-
+import emailjs from "@emailjs/browser";
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
@@ -1677,15 +1677,36 @@ function Contact() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = async () => {
-    if (!form.name || !form.email || !form.message) return;
-    setSending(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setSending(false);
+const handleSubmit = async () => {
+  if (!form.name || !form.email || !form.message) return;
+
+  setSending(true);
+
+  try {
+    const emailjs = await import("@emailjs/browser");
+
+    await emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+      {
+        title: form.email,
+        name: form.name,
+        time: new Date().toLocaleString(),
+        message: form.message,
+      },
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    );
+
     setSent(true);
     setForm({ name: "", email: "", message: "" });
     setTimeout(() => setSent(false), 4000);
-  };
+  } catch (error) {
+    console.error("Email failed:", error);
+    alert("Failed to send. Please try again.");
+  } finally {
+    setSending(false);
+  }
+};
 
   const inputStyle = {
     width: "100%",
