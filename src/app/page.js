@@ -2015,7 +2015,7 @@ function Footer() {
         </div>
 
         <p style={{ color: "var(--muted)", fontSize: "0.85rem" }}>
-          © {new Date().getFullYear()} Md. Sayed Islam Rifat. Crafted with Next.js & ❤️
+          © {new Date().getFullYear()} Md. Sayed Crafted with Next.js & ❤️
         </p>
       </div>
     </footer>

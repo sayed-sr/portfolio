@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Md. Sayed Islam Rifat | Portfolio",
+  title: "Md. Sayed | Portfolio",
   description:
     "CSE Student | MERN Stack Developer | IEEE Champion | Graphic Designer",
 };
