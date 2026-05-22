@@ -488,6 +488,7 @@ function Hero() {
       />
 
       <div
+        className="hero-container"
         style={{
           maxWidth: 1200,
           margin: "0 auto",
@@ -508,6 +509,7 @@ function Hero() {
           }}
         >
           <motion.div
+            className="availability-badge"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -531,6 +533,38 @@ function Hero() {
             </span>
           </motion.div>
 
+          {/* Mobile image */}
+          <div
+            className="hero-mobile-image"
+            style={{
+              display: "none",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                width: 220,
+                height: 220,
+                borderRadius: "50%",
+                border: "3px solid var(--accent)",
+                overflow: "hidden",
+                boxShadow: "0 0 60px rgba(124,58,237,0.3)",
+                flexShrink: 0,
+              }}
+            >
+              <img
+                src="/me.png"
+                alt="Md. Sayed Islam Rifat"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+          </div>
+
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -544,7 +578,6 @@ function Hero() {
             }}
           >
             Md.
-            
             <span className="gradient-text"> Sayed</span>
           </motion.h1>
 
@@ -600,7 +633,6 @@ function Hero() {
             transition={{ delay: 0.5 }}
             style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
           >
-            {/* FIX: was missing the opening <a tag — was just attributes floating in JSX */}
             <a
               href="#contact"
               onClick={(e) => {
@@ -632,7 +664,7 @@ function Hero() {
             >
               <FiSend size={16} /> Hire Me
             </a>
-            {/* FIX: was missing the opening <a tag */}
+
             <a
               href="/cv.pdf"
               download
@@ -670,7 +702,13 @@ function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}
+            style={{
+  display: "flex",
+  gap: "0.75rem",
+  flexWrap: "wrap",
+  width: "100%",
+  justifyContent: "center",
+}}
           >
             {[
               {
@@ -704,7 +742,6 @@ function Hero() {
                 label: "Email",
               },
             ].map(({ icon: Icon, href, color, label }) => (
-              // FIX: was missing the opening <a tag inside .map()
               <a
                 key={label}
                 href={href}
@@ -741,7 +778,7 @@ function Hero() {
           </motion.div>
         </div>
 
-        {/* Profile picture — right column */}
+        {/* Desktop Profile picture */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -771,8 +808,30 @@ function Hero() {
             />
           </div>
         </motion.div>
-
       </div>
+
+      {/* Responsive styles */}
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .hero-container {
+              grid-template-columns: 1fr !important;
+            }
+
+            .hero-image-col {
+              display: none !important;
+            }
+
+            .hero-mobile-image {
+              display: flex !important;
+            }
+
+            .availability-badge {
+              display: none !important;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 }
