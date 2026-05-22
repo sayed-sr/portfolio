@@ -268,7 +268,7 @@ function Navbar({ theme, toggleTheme }) {
             letterSpacing: "-0.02em",
           }}
         >
-          SR<span style={{ color: "var(--accent2)" }}></span>
+          SR<span style={{ color: "var(--accent2)" }}>.</span>
         </button>
 
         {/* Desktop nav */}
@@ -410,6 +410,17 @@ function Navbar({ theme, toggleTheme }) {
         @media (max-width: 767px) {
           .hidden-mobile { display: none !important; }
           .show-mobile { display: flex !important; }
+          .hero-image-col {
+            display: none !important;
+          }
+          #hero > div {
+            grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 480px) {
+          #hero > div {
+            padding: 0 1rem !important;
+          }
         }
       `}</style>
     </nav>
@@ -532,9 +543,9 @@ function Hero() {
               color: "var(--text)",
             }}
           >
-            Md. Sayed
-            <br />
-            <span className="gradient-text">Islam Rifat</span>
+            Md.
+            
+            <span className="gradient-text"> Sayed</span>
           </motion.h1>
 
           <motion.div
@@ -729,6 +740,38 @@ function Hero() {
             ))}
           </motion.div>
         </div>
+
+        {/* Profile picture — right column */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="hero-image-col"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              width: 320,
+              height: 320,
+              borderRadius: "50%",
+              border: "3px solid var(--accent)",
+              overflow: "hidden",
+              boxShadow: "0 0 60px rgba(124,58,237,0.3)",
+              flexShrink: 0,
+            }}
+          >
+            <img
+              src="/me.png"
+              alt="Md. Sayed Islam Rifat"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
@@ -749,7 +792,7 @@ function About() {
               marginBottom: "0.75rem",
             }}
           >
-           
+            // who I am
           </p>
           <h2 className="section-title" style={{ marginBottom: "3rem" }}>
             About <span>Me</span>
@@ -933,7 +976,7 @@ function Skills() {
               marginBottom: "0.75rem",
             }}
           >
-            
+            // what I know
           </p>
           <h2 className="section-title" style={{ marginBottom: "3rem" }}>
             Tech Stack & <span>Skills</span>
@@ -1087,7 +1130,7 @@ function Education() {
               marginBottom: "0.75rem",
             }}
           >
-            
+            // where I studied
           </p>
           <h2 className="section-title" style={{ marginBottom: "3rem" }}>
             <span>Education</span>
@@ -1216,7 +1259,7 @@ function Experience() {
               marginBottom: "0.75rem",
             }}
           >
-            
+            // where I've worked
           </p>
           <h2 className="section-title" style={{ marginBottom: "3rem" }}>
             Work <span>Experience</span>
@@ -1317,7 +1360,7 @@ function Projects() {
               marginBottom: "0.75rem",
             }}
           >
-            
+            // what I've built
           </p>
           <h2 className="section-title" style={{ marginBottom: "3rem" }}>
             My <span>Projects</span>
@@ -1675,7 +1718,7 @@ function Contact() {
               marginBottom: "0.75rem",
             }}
           >
-            
+            // get in touch
           </p>
           <h2 className="section-title" style={{ marginBottom: "3rem" }}>
             Contact <span>Me</span>
